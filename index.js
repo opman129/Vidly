@@ -56,6 +56,17 @@ app.put('/api/genres/:id',  [body("name").isLength({ min: 5 })], (req,res) => {
     res.send(genre);
 });
 
+//DELETE A SPECIFIC GENRE
+app.delete('/api/genres/:id', (req,res) => {
+    const genre = genres.find((c) => c.id === parseInt(req.params.id));
+    if (!genre){
+        return res.status(404).send("The genre with the given ID does not exist")};
+    const index = genres.indexOf(genre);
+    genres.splice(index, 1);
+    //Return Genre
+    res.send(genre);
+});
 
+//Environment Variable for PORT
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`listening on port ${port}`));
