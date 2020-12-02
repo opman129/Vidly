@@ -1,3 +1,27 @@
 const { body, validationResult } = require('express-validator');
 const express = require('express');
 const app = express();
+
+app.use(express.json());
+
+const genres = [
+    {id:1, name: "Action"},
+    {id:2, name: "Horror"},
+    {id:3, name: "Comedy"},
+    {id:4, name: "Afrocentric"},
+    {id:5, name: "Frightful"}
+];
+
+app.get('/api/genres', (req,res) => {
+    res.send(genres);
+});
+
+app.get('/api/genres/:id', (req,res) => {
+    const genre = genres.find((c) => c.id === parseInt(req.params.id));
+    if (!genre){
+        return res.status(404).send("The genre with the given ID does not exist")};
+    res.send(genre);
+});
+
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`listening on port ${port}`));
