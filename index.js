@@ -39,7 +39,8 @@ app.post("/api/genres", [body("name").isLength({ min: 5 })], (req, res) => {
     res.send(genre);
   });
 
-app.patch("api/genres/:id",  [body("name").isLength({ min: 5 })], (req,res) => {
+//UPDATE A SPECIFIC GENRE WITH THE PUT METHOD
+app.put('/api/genres/:id',  [body("name").isLength({ min: 5 })], (req,res) => {
     //GET COURSE USING COURSE ID
     const genre = genres.find((c) => c.id === parseInt(req.params.id));
     if (!genre) {
