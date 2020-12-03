@@ -11,12 +11,12 @@ const genres = [
 ];
 
 //GET ALL GENRES
-app.router('/', (req,res) => {
+router.get('/', (req,res) => {
     res.send(genres);
 });
 
 //GET SPECIFIC GENRES
-app.get('/:id', (req,res) => {
+router.get('/:id', (req,res) => {
     const genre = genres.find((c) => c.id === parseInt(req.params.id));
     if (!genre){
         return res.status(404).send("The genre with the given ID does not exist")};
@@ -24,7 +24,7 @@ app.get('/:id', (req,res) => {
 });
 
 //CREATE A NEW GENRE && USE EXPRESS VALIDATOR FOR VALIDATION
-app.post("/", [body("name").isLength({ min: 5 })], (req, res) => {
+router.post("/", [body("name").isLength({ min: 5 })], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -38,7 +38,7 @@ app.post("/", [body("name").isLength({ min: 5 })], (req, res) => {
   });
 
 //UPDATE A SPECIFIC GENRE WITH THE PUT METHOD
-app.put('/:id',  [body("name").isLength({ min: 5 })], (req,res) => {
+router.put('/:id',  [body("name").isLength({ min: 5 })], (req,res) => {
     //GET COURSE USING COURSE ID
     const genre = genres.find((c) => c.id === parseInt(req.params.id));
     if (!genre) {
@@ -55,7 +55,7 @@ app.put('/:id',  [body("name").isLength({ min: 5 })], (req,res) => {
 });
 
 //DELETE A SPECIFIC GENRE
-app.delete('/:id', (req,res) => {
+router.delete('/:id', (req,res) => {
     const genre = genres.find((c) => c.id === parseInt(req.params.id));
     if (!genre){
         return res.status(404).send("The genre with the given ID does not exist")};

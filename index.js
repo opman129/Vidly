@@ -3,7 +3,11 @@ const express = require('express');
 const app = express();
 const genres = require('./routes/genres');
 
+//Load Built-In Middleware
 app.use(express.json());
+app.use(express.urlencoded());
+
+//Load Modules
 app.use('/api/genres', genres);
 
 //Environment Variable for PORT
