@@ -38,7 +38,7 @@ router.post("/", [body("name").isLength({ min: 5 })], (req, res) => {
   });
 
 //UPDATE A SPECIFIC GENRE WITH THE PUT METHOD
-router.put('/:id',  [body("name").isLength({ min: 5 })], (req,res) => {
+router.patch('/:id',  [body("name").isLength({ min: 5 })], (req,res) => {
     //GET COURSE USING COURSE ID
     const genre = genres.find((c) => c.id === parseInt(req.params.id));
     if (!genre) {

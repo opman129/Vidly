@@ -5,7 +5,7 @@ const genres = require('./routes/genres');
 
 //Load Built-In Middleware
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true}));
 
 //Load Modules
 app.use('/api/genres', genres);
