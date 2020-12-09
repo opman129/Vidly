@@ -11,7 +11,7 @@ const customerSchema = new mongoose.Schema({
     maxlength: 50,
   },
   phone: String,
-  isGold: Boolean,
+  isGold: { type: Boolean, default: false },
   date: { type: Date, default: Date.now },
 });
 //Model For Customers
