@@ -3,6 +3,7 @@ const { body, validationResult } = require('express-validator');
 const express = require('express');
 const app = express();
 const genres = require('./routes/genres');
+const customers = require('./routes/customer');
 
 //DATABASE CONNECTION 
 mongoose.connect('mongodb://localhost/vidly', 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true}));
 
 //Load Modules
 app.use('/api/genres', genres);
+app.use('./api/customers', customers);
 
 //Environment Variable for PORT
 const port = process.env.PORT || 5000;
