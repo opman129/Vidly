@@ -3,15 +3,13 @@ const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
-//const genres = require('../db.js/genres-db');
-
 //Schema For Movie
 const movieSchema = new mongoose.Schema({
   name: { 
     type: String, 
     required: true, 
     minlength:5, 
-    maxlength: 50},
+    maxlength: 50 },
   producer: {type: String, required: true, minlength:5, maxlength: 50},
   tags: [String],
   date: { type: Date, default: Date.now },
@@ -45,7 +43,7 @@ router.post("/", [body("name").isLength({ min: 5 })], async (req, res) => {
 
   //GET SPECIFIC GENRES
 router.get("/:id", async (req, res) => {
-  const genre = await Movie.findById(req.params.id,);
+  const genre = await Movie.findById(req.params.id, { useFindAndModify: false });
   if (!genre) {
     return res.status(404).send("The genre with the given ID does not exist");
   }
@@ -64,18 +62,18 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
     name: req.body.name,
     producer: req.body.producer,
     tags: req.body.tags,
+    nowShowing: req.body.nowShowing
   }, { new: true });
 
     if (!genre) {
       return res.status(404).send("The genre with the given ID does not exist");
-    }
-
+    };
     res.send(genre);
 });
 
 //DELETE A SPECIFIC GENRE
 router.delete('/:id', async (req,res) => {
-    const genre = await Movie.findByIdAndRemove(req.params.id);
+    const genre = await Movie.findByIdAndRemove(req.params.id, { useFindAndModify: false });
     if (!genre){
         return res.status(404).send("The genre with the given ID does not exist")};
     //Return Genre
