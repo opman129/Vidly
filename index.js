@@ -3,7 +3,7 @@ const { body, validationResult } = require('express-validator');
 const express = require('express');
 const app = express();
 const genres = require('./routes/genres');
-const customers = require('./routes/customer');
+const customers = require('./routes/customers');
 
 //DATABASE CONNECTION 
 mongoose.connect('mongodb://localhost/vidly', 
