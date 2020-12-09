@@ -10,9 +10,15 @@ const customerSchema = new mongoose.Schema({
     minlength: 5,
     maxlength: 50,
   },
-  phone: String,
-  isGold: { type: Boolean, default: false },
-  date: { type: Date, default: Date.now },
+  phone: { 
+    type: String, 
+    required: true },
+  isGold: { 
+    type: Boolean, 
+    default: false },
+  date: { 
+    type: Date, 
+    default: Date.now },
 });
 //Model For Customers
 const Customer = mongoose.model("Customer", customerSchema);
