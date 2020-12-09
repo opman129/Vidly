@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { body, validationResult } = require('express-validator');
+// const { body, validationResult } = require('express-validator');
 const express = require('express');
 const app = express();
 const genres = require('./routes/genres');
@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true}));
 
 //Load Modules
 app.use('/api/genres', genres);
-app.use('./api/customers', customers);
+app.use('/api/customers', customers);
 
 //Environment Variable for PORT
 const port = process.env.PORT || 5000;

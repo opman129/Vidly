@@ -69,7 +69,7 @@ router.patch('/:id',  [body("name").isLength({ min: 5 }), body("phone").isLength
 
 //Delete Customer
 router.delete('/:id', async (req,res) => {
-  const customer = await Movie.findByIdAndRemove(req.params.id, { useFindAndModify: false });
+  const customer = await Customer.findByIdAndRemove(req.params.id, { useFindAndModify: false });
   if (!customer){
       return res.status(404).send("The customer with the given ID does not exist")};
   //Return Customer
