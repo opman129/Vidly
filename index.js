@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const { body, validationResult } = require('express-validator');
 const express = require('express');
 const app = express();
 const genres = require('./routes/genres');
