@@ -19,7 +19,7 @@ const movieSchema = new mongoose.Schema({
 });    
 
 //MODEL for SchemaType
-const Movie = new mongoose.model("Movie", movieSchema);
+const Movie = mongoose.model("Movie", movieSchema);
 
 //GET ALL GENRES
 router.get('/', async (req,res) => {
@@ -74,12 +74,10 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
 });
 
 //DELETE A SPECIFIC GENRE
-router.delete('/:id', (req,res) => {
-    const genre = genres.find((c) => c.id === parseInt(req.params.id));
+router.delete('/:id', async (req,res) => {
+    const genre = await Movie.findByIdAndRemove(req.params.id);
     if (!genre){
         return res.status(404).send("The genre with the given ID does not exist")};
-    const index = genres.indexOf(genre);
-    genres.splice(index, 1);
     //Return Genre
     res.send(genre);
 });
