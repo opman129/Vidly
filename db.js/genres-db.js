@@ -7,24 +7,33 @@ useUnifiedTopology: true })
     .catch(err => console.error('Could not connect to MongoDB..', err));
 
 const movieSchema = new mongoose.Schema({
-  name: String,
-  producer: String,
+  name: {type: String, required: true},
+  producer: {type: String, required: true},
   tags: [String],
   date: { type: Date, default: Date.now },
   nowShowing: Boolean
 });     
 
-const Movie = mongoose.model("Movies", movieSchema);
+//const Movie = mongoose.model("Movie", movieSchema);
 
 //CREATE NEW MOVIE GENRE
 
 async function createMovie(){
     try {
         const Movie = mongoose.model('Movie', movieSchema);
-
+        const movie = new Movie({
+            name: "The Allergy",
+            producer: "Stephen Cage",
+            tags: ["Action", "Exciting"],
+            nowShowing: true
+        })
         
     } catch (err) {
         console.log('Error', err.message)
     }
 }
 
+createMovie();
+
+
+module.exports = movieSchema;
