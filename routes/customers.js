@@ -1,27 +1,7 @@
-const mongoose = require('mongoose'); 
+const {Customer} = require('../models/customer');
 const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
-
-const customerSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 50,
-  },
-  phone: { 
-    type: String, 
-    required: true },
-  isGold: { 
-    type: Boolean, 
-    default: false },
-  date: { 
-    type: Date, 
-    default: Date.now },
-});
-//Model For Customers
-const Customer = mongoose.model("Customer", customerSchema);
 
 //Get all Customers
 router.get("/", async (req,res) => {
