@@ -52,12 +52,12 @@ router.get("/:id", async (req, res) => {
 
 //UPDATE A SPECIFIC GENRE WITH THE PATCH METHOD
 router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
-  //VALIDATE COURSE
+  //VALIDATE Movie
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  //GET COURSE USING COURSE ID
+  //GET Movie USING Movie ID
   const genre = await Movie.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     producer: req.body.producer,
