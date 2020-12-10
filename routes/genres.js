@@ -14,7 +14,7 @@ router.post("/", [body("name").isLength({ min: 5 })], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
-    }
+    };
     let genre = new Movie ({
       name: req.body.name,
       producer: req.body.producer,
