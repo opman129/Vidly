@@ -17,7 +17,7 @@ router.post("/", [body("title").isLength({ min: 5 })], async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
   let movie = new Movie({
-    title: req.body.name,
+    title: req.body.title,
     numberInStock: req.body.numberInStock,
     dailyRentalRate: req.body.dailyRentalRate
   });
