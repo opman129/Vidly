@@ -54,7 +54,7 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
     res.send(movie);
 });
 
-//DELETE A SPECIFIC Movie
+//DELETE A SPECIFIC MOVIE
 router.delete('/:id', async (req,res) => {
     const movie = await Movie.findByIdAndRemove(req.params.id, { useFindAndModify: false });
     if (!movie){
