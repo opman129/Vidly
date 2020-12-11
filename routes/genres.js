@@ -26,7 +26,7 @@ router.post("/", [body("name").isLength({ min: 5 })], async (req, res) => {
   res.send(genre);
 });
 
-  //GET SPECIFIC GENRES
+//GET SPECIFIC GENRES
 router.get("/:id", async (req, res) => {
   const genre = await Genre.findById(req.params.id, { useFindAndModify: false });
   if (!genre) {
@@ -49,7 +49,7 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
     tags: req.body.tags,
     nowShowing: req.body.nowShowing}, 
     { new: true });
-    //return status code if genre doesnt exist
+    //Return Status Code If Genre Doesnt Exist
     if (!genre) {
       return res.status(404).send("The genre with the given ID does not exist");
     };
