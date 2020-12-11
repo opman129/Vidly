@@ -9,7 +9,7 @@ router.get('/', async (req,res) => {
     res.send(movies);
 });
 
-//CREATE A NEW GENRE && USE EXPRESS VALIDATOR FOR VALIDATION
+//CREATE A NEW MOVIE && USE EXPRESS VALIDATOR FOR VALIDATION
 //Valdate
 router.post("/", [body("title").isLength({ min: 5 })], async (req, res) => {
   const errors = validationResult(req);
@@ -25,16 +25,16 @@ router.post("/", [body("title").isLength({ min: 5 })], async (req, res) => {
   res.send(movie);
 });
 
-//GET SPECIFIC GENRES
+//GET SPECIFIC MOVIES
 router.get("/:id", async (req, res) => {
   const movie = await Movie.findById(req.params.id, { useFindAndModify: false });
   if (!movie) {
-    return res.status(404).send("The genre with the given ID does not exist");
+    return res.status(404).send("The movie with the given ID does not exist");
   }
   res.send(movie);
 });
 
-//UPDATE A SPECIFIC GENRE WITH THE PATCH METHOD
+//UPDATE A SPECIFIC MOVIE WITH THE PATCH METHOD
 router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
   //VALIDATE Movie
   const errors = validationResult(req);
@@ -47,9 +47,9 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
     numberInStock: req.body.numberInStock,
     dailyRentalRate: req.body.dailyRentalRate }, 
     { new: true });
-    //Return Status Code If Genre Doesnt Exist
+    //Return Status Code If Movie Doesnt Exist
     if (!movie) {
-      return res.status(404).send("The genre with the given ID does not exist");
+      return res.status(404).send("The movie with the given ID does not exist");
     };
     res.send(movie);
 });
@@ -58,7 +58,7 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
 router.delete('/:id', async (req,res) => {
     const movie = await Movie.findByIdAndRemove(req.params.id, { useFindAndModify: false });
     if (!movie){
-        return res.status(404).send("The genre with the given ID does not exist")};
+        return res.status(404).send("The movie with the given ID does not exist")};
     //Return Movie
     res.send(movie);
 });
