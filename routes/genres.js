@@ -1,11 +1,11 @@
-const Movie = require('../models/genre');
+const Genre = require('../models/genre');
 const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 //GET ALL GENRES
 router.get('/', async (req,res) => {
-    const genres = await Movie.find().sort('name');
+    const genres = await Genre.find().sort('name');
     res.send(genres);
 });
 
@@ -15,7 +15,7 @@ router.post("/", [body("name").isLength({ min: 5 })], async (req, res) => {
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     };
-    let genre = new Movie ({
+    let genre = new Genre ({
       name: req.body.name,
       producer: req.body.producer,
       tags: req.body.tags,
@@ -27,7 +27,7 @@ router.post("/", [body("name").isLength({ min: 5 })], async (req, res) => {
 
   //GET SPECIFIC GENRES
 router.get("/:id", async (req, res) => {
-  const genre = await Movie.findById(req.params.id, { useFindAndModify: false });
+  const genre = await Genre.findById(req.params.id, { useFindAndModify: false });
   if (!genre) {
     return res.status(404).send("The genre with the given ID does not exist");
   }
@@ -41,14 +41,14 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  //GET Movie USING Movie ID
-  const genre = await Movie.findByIdAndUpdate(req.params.id, {
+  //GET Movie USING Movie ID and Update
+  const genre = await Genre.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     producer: req.body.producer,
     tags: req.body.tags,
     nowShowing: req.body.nowShowing
-  }, { new: true });
-
+    }, { new: true }, { useFindAndModify: false } );
+    //return status code if genre doesnt exist
     if (!genre) {
       return res.status(404).send("The genre with the given ID does not exist");
     };
@@ -57,7 +57,7 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
 
 //DELETE A SPECIFIC GENRE
 router.delete('/:id', async (req,res) => {
-    const genre = await Movie.findByIdAndRemove(req.params.id, { useFindAndModify: false });
+    const genre = await Genre.findByIdAndRemove(req.params.id, { useFindAndModify: false });
     if (!genre){
         return res.status(404).send("The genre with the given ID does not exist")};
     //Return Genre
