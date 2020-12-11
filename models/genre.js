@@ -7,7 +7,7 @@ const genreSchema = new mongoose.Schema({
       required: true, 
       minlength:5, 
       maxlength: 50 },
-    producer: {type: String, required: true, minlength:5, maxlength: 50},
+    producer: { type: String, required: true, minlength:5, maxlength: 50 },
     tags: [String],
     date: { type: Date, default: Date.now },
     nowShowing: Boolean

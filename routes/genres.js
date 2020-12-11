@@ -41,14 +41,14 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  //GET Movie USING Movie ID
+  //GET Movie USING Movie ID and Update
   const genre = await Genre.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     producer: req.body.producer,
     tags: req.body.tags,
     nowShowing: req.body.nowShowing
-  }, { new: true }, { useFindAndModify: false} );
-
+    }, { new: true }, { useFindAndModify: false } );
+    //return status code if genre doesnt exist
     if (!genre) {
       return res.status(404).send("The genre with the given ID does not exist");
     };
