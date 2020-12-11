@@ -11,12 +11,12 @@ router.get('/', async (req,res) => {
 
 //CREATE A NEW MOVIE && USE EXPRESS VALIDATOR FOR VALIDATION
 //Valdate
-router.post("/", [body("title").isLength({ min: 5 })], async (req, res) => {
+router.post("/", [body("title").isLength({ min: 4 })], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  let movie = new Movie({
+  let movie = new Movie ({
     title: req.body.title,
     numberInStock: req.body.numberInStock,
     dailyRentalRate: req.body.dailyRentalRate
