@@ -1,12 +1,16 @@
-const {Genre} = require('../models/genre');
+const Genre = require('../models/genre');
 const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 //GET ALL GENRES
 router.get('/', async (req,res) => {
-    const genres = await Genre.find().sort('name');
-    res.send(genres);
+    try {
+      const genres = await Genre.find().sort("name");
+      res.send(genres);
+    } catch (err) {
+      console.log("Error", err.message);
+    }
 });
 
 //CREATE A NEW GENRE && USE EXPRESS VALIDATOR FOR VALIDATION
@@ -16,14 +20,18 @@ router.post("/", [body("name").isLength({ min: 5 })], async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  let genre = new Genre({
-    name: req.body.name,
-    producer: req.body.producer,
-    tags: req.body.tags,
-    nowShowing: req.body.nowShowing
-  });
-  genre = await genre.save();
-  res.send(genre);
+  try {
+    let genre = new Genre({
+      name: req.body.name,
+      producer: req.body.producer,
+      tags: req.body.tags,
+      nowShowing: req.body.nowShowing
+    });
+    genre = await genre.save();
+    res.send(genre);
+  } catch (error) {
+    console.log('Error', error.message);
+  }
 });
 
 //GET SPECIFIC GENRES
