@@ -12,8 +12,12 @@ const movieSchema = new mongoose.Schema({
         type: genreSchema,
         required: true
     },
-    numberInStock: Number,
-    dailyRentalRate: Number
+    numberInStock: {
+        type: Number,
+        required: true},
+    dailyRentalRate:  {
+        type: Number,
+        required: true}
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
