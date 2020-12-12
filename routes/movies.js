@@ -1,5 +1,5 @@
 const Movie = require('../models/movie');
-const {Genre} = require('../models/genre');
+const Genre = require('../models/genre');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -40,7 +40,7 @@ router.get("/:id", async (req, res) => {
   const movie = await Movie.findById(req.params.id, { useFindAndModify: false });
   if (!movie) {
     return res.status(404).send("The movie with the given ID does not exist");
-  }
+  };
   res.send(movie);
 });
 
