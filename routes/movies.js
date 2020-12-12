@@ -1,13 +1,17 @@
 const Movie = require('../models/movie');
-const {Genre} = require('../models/genre');
+const Genre = require('../models/genre');
 const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 //GET ALL MOVIES
 router.get('/', async (req,res) => {
-    const movies = await Movie.find().sort('name');
-    res.send(movies);
+    try {
+        const movies = await Movie.find().sort("name");
+        res.send(movies);
+    } catch (err) {
+        console.log("Error", err.message);
+    };
 });
 
 //CREATE A NEW MOVIE && USE EXPRESS VALIDATOR FOR VALIDATION
@@ -19,14 +23,11 @@ router.post("/", [body("title").isLength({ min: 4 })], async (req, res) => {
   }
   try {
       //const genre = await Genre.findById(req.body.genreId);
-      if (!genre) return res.status(400).send("Invalid genre.");
+      //if (!genre) return res.status(400).send("Invalid genre.");
 
       let movie = new Movie({
         title: req.body.title,
-        genre: {
-          _id: genre._id,
-          name: genre.name,
-        },
+        genre: req.body.genre,
         numberInStock: req.body.numberInStock,
         dailyRentalRate: req.body.dailyRentalRate,
       });
@@ -34,7 +35,7 @@ router.post("/", [body("title").isLength({ min: 4 })], async (req, res) => {
       res.send(movie);
     }
     catch(err){
-        console.log('Error', err.Message)
+        console.log(err)
     }
 });
 

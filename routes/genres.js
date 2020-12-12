@@ -51,17 +51,22 @@ router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
     return res.status(400).json({ errors: errors.array() });
   }
   //GET Movie USING Movie ID and Update
-  const genre = await Genre.findByIdAndUpdate(req.params.id, {
-    name: req.body.name,
-    producer: req.body.producer,
-    tags: req.body.tags,
-    nowShowing: req.body.nowShowing}, 
-    { new: true });
-    //Return Status Code If Genre Doesnt Exist
-    if (!genre) {
-      return res.status(404).send("The genre with the given ID does not exist");
-    };
-    res.send(genre);
+  try {
+    const genre = await Genre.findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      producer: req.body.producer,
+      tags: req.body.tags,
+      nowShowing: req.body.nowShowing}, 
+      { new: true });
+      //Return Status Code If Genre Doesnt Exist
+      if (!genre) {
+        return res.status(404).send("The genre with the given ID does not exist");
+      };
+      res.send(genre);
+  } catch (err) {
+    console.log('Error', err.message);
+  };
+  
 });
 
 //DELETE A SPECIFIC GENRE
