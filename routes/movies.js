@@ -79,7 +79,7 @@ router.delete('/:id', async (req,res) => {
     if (!movie){
         return res.status(404).send("The movie with the given ID does not exist")};
     //Return Movie
-    res.send(movie);
+    res.status(204).send("Successfully Deleted");
 });
 
 module.exports = router;
