@@ -49,18 +49,23 @@ router.get("/:id", async (req, res) => {
 });
 
 //UPDATE A SPECIFIC MOVIE WITH THE PATCH METHOD
-router.patch('/:id',  [body("name").isLength({ min: 5 })], async (req,res) => {
+router.patch('/:id',  [body("title").isLength({ min: 5 })], async (req,res) => {
   //VALIDATE Movie
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
   //GET Movie USING Movie ID and Update
-  const movie = await Movie.findByIdAndUpdate(req.params.id, {
-    title: req.body.title,
-    numberInStock: req.body.numberInStock,
-    dailyRentalRate: req.body.dailyRentalRate }, 
-    { new: true });
+  const movie = await Movie.findByIdAndUpdate(
+    req.params.id,
+    {
+      title: req.body.title,
+      genre: req.body.genre,
+      numberInStock: req.body.numberInStock,
+      dailyRentalRate: req.body.dailyRentalRate,
+    },
+    { new: true }, { useFindAndModify: false }
+  );
     //Return Status Code If Movie Doesnt Exist
     if (!movie) {
       return res.status(404).send("The movie with the given ID does not exist");
