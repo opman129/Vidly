@@ -6,11 +6,12 @@ const Movie = mongoose.model('Movies', new mongoose.Schema({
       type: String, 
       required: true, 
       minlength:4, 
-      maxlength: 255
+      maxlength: 255,
+      trim: true
     },
     genre: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Genre',
+        ref: "Genre",
         required: true
     },
     numberInStock: {
