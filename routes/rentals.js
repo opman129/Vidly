@@ -3,6 +3,7 @@ const Movie = require('../models/movie');
 const Customer = require('../models/customer'); 
 const express = require('express');
 const router = express.Router();
+const Fawn = require('fawn');
 const { body, validationResult } = require('express-validator');
 
 router.get("/", async (req, res) => {
