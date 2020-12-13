@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const Rental = mongoose.model('Rental', rentalSchema); 
-
 const rentalSchema = new mongoose.Schema({
   customer: { 
     type: new mongoose.Schema({
@@ -55,5 +53,7 @@ const rentalSchema = new mongoose.Schema({
     min: 0
   }
 });
+
+const Rental = mongoose.model('Rental', rentalSchema); 
 
 module.exports = Rental;
