@@ -36,7 +36,7 @@ const rentalSchema = new mongoose.Schema({
         required: true,
         min: 0,
         max: 255
-      }   
+      } 
     }),
     required: true
   },
@@ -54,6 +54,6 @@ const rentalSchema = new mongoose.Schema({
   }
 });
 
-const Rental = mongoose.model('Rental', rentalSchema); 
+const Rental = mongoose.model("Rental", rentalSchema); 
 
 module.exports = Rental;
