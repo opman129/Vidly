@@ -5,11 +5,11 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 //GET ALL GENRES
-router.get('/', asyncMiddleware(async(req,res,next) => {
+router.get('/', async(req,res,next) => {
       const genres = await Genre.find().sort("name");
       res.send(genres);
     }
-));
+);
 
 //CREATE A NEW GENRE && USE EXPRESS VALIDATOR FOR VALIDATION
 //Valdate
