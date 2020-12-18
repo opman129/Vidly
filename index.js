@@ -23,10 +23,7 @@ app.use('/api/customers', customers);
 app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
 
-app.use((err, req, res, next) => {
-    //Log the exception
-    res.status(500).send('Something failed.');
-})
+app.use()
 
 //Environment Variable for PORT
 const port = process.env.PORT || 5000;
