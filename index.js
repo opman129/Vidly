@@ -1,3 +1,4 @@
+const error = require('./middleware/error');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
@@ -23,7 +24,7 @@ app.use('/api/customers', customers);
 app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
 
-app.use()
+app.use() 
 
 //Environment Variable for PORT
 const port = process.env.PORT || 5000;
