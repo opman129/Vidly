@@ -1,4 +1,3 @@
-const asyncMiddleware = require('../middleware/async');
 const Genre = require('../models/genre');
 const express = require('express');
 const router = express.Router();
