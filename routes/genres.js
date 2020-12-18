@@ -1,17 +1,15 @@
+const asyncMiddleware = require('../middleware/async');
 const Genre = require('../models/genre');
 const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 //GET ALL GENRES
-router.get('/', async (req,res,next) => {
-    try {
+router.get('/', async(req,res,next) => {
       const genres = await Genre.find().sort("name");
       res.send(genres);
-    } catch (err) {
-        next(err);
     }
-});
+);
 
 //CREATE A NEW GENRE && USE EXPRESS VALIDATOR FOR VALIDATION
 //Valdate

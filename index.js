@@ -1,3 +1,4 @@
+require('express-async-errors');
 const error = require('./middleware/error');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -24,7 +25,7 @@ app.use('/api/customers', customers);
 app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
 
-app.use() 
+app.use(error); 
 
 //Environment Variable for PORT
 const port = process.env.PORT || 5000;
