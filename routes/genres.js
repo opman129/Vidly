@@ -4,12 +4,12 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 //GET ALL GENRES
-router.get('/', async (req,res) => {
+router.get('/', async (req,res,next) => {
     try {
       const genres = await Genre.find().sort("name");
       res.send(genres);
     } catch (err) {
-      console.log("Error", err.message);
+        next(err);
     }
 });
 

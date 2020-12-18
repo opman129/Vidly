@@ -1,3 +1,4 @@
+const error = require('./middleware/error');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
@@ -17,11 +18,13 @@ useUnifiedTopology: true })
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
-//Load Modules
+//Load Modules/Middleware
 app.use('/api/genres', genres);
 app.use('/api/customers', customers);
 app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
+
+app.use() 
 
 //Environment Variable for PORT
 const port = process.env.PORT || 5000;
