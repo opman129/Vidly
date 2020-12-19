@@ -8,6 +8,11 @@ const customers = require('./routes/customers');
 const movies = require('./routes/movies');
 const rentals = require('./routes/rentals');
 
+//Uncaught Exceptions
+process.on('uncaughtException', (ex) => {
+    console.log('We got an uncaught exception');
+})
+
 //DATABASE CONNECTION 
 mongoose.connect('mongodb://localhost/vidly', 
 { useNewUrlParser: true ,
