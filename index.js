@@ -31,9 +31,9 @@ app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
 
 //Register Error middleware
-app.use((err, req, res, next) => {
-    res.status(500).send("Something failed");
-});
+// app.use((err, req, res, next) => {
+//     res.status(500).send("Something failed");
+// });
 app.use(error); 
 
 //Environment Variable for PORT
