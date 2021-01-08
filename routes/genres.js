@@ -9,7 +9,7 @@ router.get("/", async (req, res, next) => {
     const genres = await Genre.find().sort("name");
     res.send(genres);
   } catch (error) {
-    res.status(500).send("Something failed");
+    next();
   }
 });
 
