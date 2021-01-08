@@ -10,12 +10,12 @@ const rentals = require('./routes/rentals');
 
 //Uncaught Exceptions
 process.on('uncaughtException', (ex) => {
-    console.log('We got an uncaught exception');
+    process.exit(1);
 });
 
 //Unhandled Promise Rejection
 process.on('unhandledRejection', (ex) => {
-    console.log('We got an unhandled rejection');
+    process.exit(1);
 });
 
 //DATABASE CONNECTION 
