@@ -1,10 +1,10 @@
 require('express-async-errors');
-const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 
+//Import routes/middleware and database
 require('./startup/routes')(app);
-require('./startup/database');
+require('./startup/database')();
 
 //Uncaught Exceptions
 process.on('uncaughtException', (ex) => {
