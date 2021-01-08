@@ -1,8 +1,9 @@
 const express = require('express');
-const genres = require('./routes/genres');
-const customers = require('./routes/customers');
-const movies = require('./routes/movies');
-const rentals = require('./routes/rentals');
+const genres = require('..genres/routes/genres');
+const customers = require('../routes/customers');
+const movies = require('../routes/movies');
+const rentals = require('../routes/rentals');
+const error = require('../middleware/error');
 
 module.exports = (app) => {
   //Load Built-In Middleware
@@ -14,4 +15,6 @@ module.exports = (app) => {
   app.use("/api/customers", customers);
   app.use("/api/movies", movies);
   app.use("/api/rentals", rentals);
+  //Error Handler
+  app.use(error); 
 };

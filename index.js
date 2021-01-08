@@ -1,5 +1,4 @@
 require('express-async-errors');
-const error = require('./middleware/error');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
@@ -22,9 +21,6 @@ mongoose.connect('mongodb://localhost/vidly',
 useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB..'))
     .catch(err => console.error('Could not connect to MongoDB..', err));
-
-//Error Handler
-app.use(error); 
 
 //Environment Variable for PORT
 const port = process.env.PORT || 5000;
