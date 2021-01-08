@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 
 require('./startup/routes')(app);
+require('./startup/database');
 
 //Uncaught Exceptions
 process.on('uncaughtException', (ex) => {
@@ -14,13 +15,6 @@ process.on('uncaughtException', (ex) => {
 process.on('unhandledRejection', (ex) => {
     process.exit(1);
 });
-
-//DATABASE CONNECTION 
-mongoose.connect('mongodb://localhost/vidly', 
-{ useNewUrlParser: true ,
-useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB..'))
-    .catch(err => console.error('Could not connect to MongoDB..', err));
 
 //Environment Variable for PORT
 const port = process.env.PORT || 5000;
