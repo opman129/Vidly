@@ -11,7 +11,12 @@ const rentals = require('./routes/rentals');
 //Uncaught Exceptions
 process.on('uncaughtException', (ex) => {
     console.log('We got an uncaught exception');
-})
+});
+
+//Unhandled Promise Rejection
+process.on('unhandledRejection', (ex) => {
+    console.log('We got an unhandled rejection');
+});
 
 //DATABASE CONNECTION 
 mongoose.connect('mongodb://localhost/vidly', 
