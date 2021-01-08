@@ -7,7 +7,7 @@ const { body, validationResult } = require('express-validator');
 router.get('/', async(req,res,next) => {
       const genres = await Genre.find().sort("name");
       res.send(genres);
-    };
+    }
 );
 
 //CREATE A NEW GENRE && USE EXPRESS VALIDATOR FOR VALIDATION
