@@ -29,7 +29,7 @@ useUnifiedTopology: true })
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
-//Load Modules/Middleware
+//Load Modules/Middleware/Routes
 app.use('/api/genres', genres);
 app.use('/api/customers', customers);
 app.use('/api/movies', movies);
