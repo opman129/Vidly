@@ -6,5 +6,5 @@ module.exports = function (handler) {
         catch(err){
             next(err);
         }
-    }
-}
+    };
+};
