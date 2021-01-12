@@ -1,4 +1,3 @@
-const { DESCRIBE } = require("sequelize/types/lib/query-types");
 const lib = require("./lib");
 
 //Always group related tests inside a describe block
