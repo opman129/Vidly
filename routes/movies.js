@@ -49,7 +49,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //UPDATE A SPECIFIC MOVIE WITH THE PATCH METHOD
-router.patch('/:id', [body("title").isLength({ min: 4 })], async (req,res) => {
+router.patch("/:id", [body("title").isLength({ min: 4 })], async (req,res) => {
   //VALIDATE Movie
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -74,8 +74,8 @@ router.patch('/:id', [body("title").isLength({ min: 4 })], async (req,res) => {
     }
     res.send(movie);
   }
-    catch(error){
-        console.log(error.message);
+    catch(err){
+        console.log('Error', err.message);
     };
 });
 
