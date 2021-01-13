@@ -38,8 +38,7 @@ describe('registerUser', () => {
     //NaN,
     //''
     //0
-    //false
-    const result = lib.registerUser(null);
-    
+    //false 
+    expect(() => { lib.registerUser(null) }).toThrow();
   });
 });
