@@ -22,10 +22,14 @@ describe('absolute', () => {
 
 });
 
-describe('greet', () => {
-  it('should return the greeting message', () => {
-    const result = lib.greet('Mosh');
-    expect(result).toMatch(/Mosh/);
-  });
+describe('greet', () => {;
 });
 
+describe('getCurrencies', () => {;
+});
+
+describe('getProduct', () => {
+  it('should return the product with the given id', () => {
+    const result = lib.getProduct(1);
+  });
+});
