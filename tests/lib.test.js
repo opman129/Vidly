@@ -29,8 +29,15 @@ describe('getCurrencies', () => {;
 });
 
 describe('getProduct', () => {
-  it('should return the product with the given id', () => {
-    const result = lib.getProduct(1);
-    expect(result).toEqual({ id: 1, price: 10 });
+});
+
+describe('registerUser', () => {
+  it('should throw if username is falsy', () => {
+    //Null
+    //Undefined
+    //NaN,
+    //''
+    //0
+    //false
   });
 });
