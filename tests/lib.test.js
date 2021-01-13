@@ -39,7 +39,6 @@ describe('registerUser', () => {
     //''
     //0
     //false
-    const result = lib.registerUser(null);
-    
+    expect(() => { lib.registerUser(null) }).toThrow();
   });
 });
