@@ -5,6 +5,7 @@ const app = express();
 //Import routes/middleware and database
 require('./startup/routes')(app);
 require('./startup/database')();
+require('./startup/prod')(app);
 
 //Uncaught Exceptions
 process.on('uncaughtException', (ex) => {
